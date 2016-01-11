@@ -4,7 +4,7 @@ module ShopifyFilter
   end
 
   def handle(string)
-    string.to_handle
+    string ? string.to_handle : nil
   end
 
   def link_to(link, url, title="")
@@ -34,7 +34,7 @@ module ShopifyFilter
   end
 
   def asset_url(file)
-    "/assets/#{file}"
+    "/#{file}"
   end
 
   def global_asset_url(file)
