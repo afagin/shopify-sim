@@ -22,3 +22,14 @@ get '/' do
   layout = liquid_template('layout/theme.liquid')
   layout.render! json.merge('content_for_layout' => html)
 end
+
+get '*' do
+  path = params['splat'].first
+  liquid_path = "../skeleton-theme/assets#{path}.liquid"
+  if File.exist?(liquid_path)
+    content_type mime_type(File.extname(path))
+    Liquid::Template.parse(File.read(liquid_path)).render!
+  else
+    halt 404
+  end
+end
