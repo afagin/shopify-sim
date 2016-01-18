@@ -18,7 +18,17 @@ def liquid_template(file)
 end
 
 get '/' do
-  json = {"product" => JSON.parse(File.read('product.json'))}
+  json = {
+      "product" => JSON.parse(File.read('product.json')),
+      "shop" => {},
+      "collections" => {},
+      "collection" => {},
+      "page_title" => {},
+      "current_tags" => nil,
+      "current_page" => 1,
+      "page_description" => nil,
+      "canonical_url" => "http://example.com/"
+  }
   html = liquid_template('templates/product.liquid').render!(json)
   layout = liquid_template('layout/theme.liquid')
   layout.render! json.merge('content_for_layout' => html)
