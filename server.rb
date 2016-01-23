@@ -8,14 +8,14 @@ Liquid::Template.error_mode = :strict
 Liquid::Template.register_filter StandardFilters
 Liquid::Template.file_system = Class.new do
   def self.read_template_file(file, _)
-    File.read "./skeleton-theme/snippets/#{file}.liquid"
+    File.read "skeleton-theme/snippets/#{file}.liquid"
   end
 end
 
-set :public_folder, './skeleton-theme/assets'
+set :public_folder, 'skeleton-theme/assets'
 
 def parse_liquid_template(file)
-  Liquid::Template.parse(File.read("./skeleton-theme/#{file}"))
+  Liquid::Template.parse(File.read("skeleton-theme/#{file}"))
 end
 
 get '/' do
@@ -27,12 +27,12 @@ end
 
 get '*' do
   path = params['splat'].first
-  if File.exist?(liquid_path = "./skeleton-theme/assets#{path}.liquid")
+  if File.exist?(liquid_path = "skeleton-theme/assets#{path}.liquid")
     content_type mime_type(File.extname(path))
     template = Liquid::Template.parse(File.read(liquid_path))
     settings = YAML.load_file('settings.yaml')
     template.render!(settings)
-  elsif File.exist?(liquid_path = "./skeleton-theme/assets#{path.sub(/\.css$/, '')}.liquid")
+  elsif File.exist?(liquid_path = "skeleton-theme/assets#{path.sub(/\.css$/, '')}.liquid")
     content_type mime_type("css")
     template = Liquid::Template.parse(File.read(liquid_path))
     settings = YAML.load_file('settings.yaml')
