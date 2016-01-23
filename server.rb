@@ -2,7 +2,6 @@ require 'sinatra'
 require 'liquid'
 require 'json'
 require 'sass'
-require './liquid_ext'
 require './shopify_filter'
 require './shopify_file_system'
 
