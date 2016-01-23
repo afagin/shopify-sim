@@ -1,3 +1,5 @@
+require 'cgi'
+
 module ShopifyFilter
   def img_url(product, size)
     pixels = {
@@ -21,8 +23,74 @@ module ShopifyFilter
     end
   end
 
+  def size(input)
+    input.respond_to?(:size) ? input.size : 0
+  end
+
+  def downcase(input)
+    input.to_s.downcase
+  end
+
+  def upcase(input)
+    input.to_s.upcase
+  end
+
+  def escape(input)
+    CGI.escapeHTML(input) rescue input
+  end
+
+  def truncatewords(input, words = 15, truncate_string = "...")
+    if input.nil? then return end
+    wordlist = input.to_s.split
+    l = words.to_i - 1
+    l = 0 if l < 0
+    wordlist.length > l ? wordlist[0..l].join(" ") + truncate_string : input
+  end
+
+  def strip_html(input)
+    input.to_s.gsub(/<.*?>/, '')
+  end
+
+  alias_method :h, :escape
+
+  def truncate(input, length = 50, truncate_string = "...")
+    if input.nil? then return end
+    l = length.to_i - truncate_string.length
+    l = 0 if l < 0
+    input.length > length.to_i ? input[0...l] + truncate_string : input
+  end
+
+  def join(input, glue = ' ')
+    [input].flatten.join(glue)
+  end
+
+  def sort(input)
+    [input].flatten.sort
+  end
+
   def handle(string)
     string.to_s.downcase.gsub(/\W/, ' ').gsub(/\ +/, '-').gsub(/(-+)$/, '').gsub(/^(-+)/, '')
+  end
+
+  def date(input, format)
+    if format.to_s.empty?
+      return input.to_s
+    end
+
+    date = case input
+             when "now"
+               Time.now
+             when String
+               Time.parse(input)
+             when Date, Time, DateTime
+               input
+             else
+               return input
+           end
+
+    date.strftime(format.to_s)
+  rescue => e
+    input
   end
 
   def link_to(link, url, title="")
