@@ -9,10 +9,10 @@ Liquid::Template.error_mode = :strict
 Liquid::Template.register_filter ShopifyFilter
 Liquid::Template.file_system = ShopifyFileSystem.new
 
-set :public_folder, '../skeleton-theme/assets'
+set :public_folder, './skeleton-theme/assets'
 
 def parse_liquid_template(file)
-  Liquid::Template.parse(File.read("../skeleton-theme/#{file}"))
+  Liquid::Template.parse(File.read("./skeleton-theme/#{file}"))
 end
 
 get '/' do
@@ -24,10 +24,10 @@ end
 
 get '*' do
   path = params['splat'].first
-  if File.exist?(liquid_path = "../skeleton-theme/assets#{path}.liquid")
+  if File.exist?(liquid_path = "./skeleton-theme/assets#{path}.liquid")
     content_type mime_type(File.extname(path))
     Liquid::Template.parse(File.read(liquid_path)).render!
-  elsif File.exist?(liquid_path = "../skeleton-theme/assets#{path.sub(/\.css$/, '')}.liquid")
+  elsif File.exist?(liquid_path = "./skeleton-theme/assets#{path.sub(/\.css$/, '')}.liquid")
     content_type mime_type("css")
     Sass::Engine.new(Liquid::Template.parse(File.read(liquid_path)).render!(YAML.load_file('settings.yaml')), {syntax: :scss}).render
   else
