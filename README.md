@@ -14,7 +14,7 @@ rake test
 
 To have a local development environment that simulates Shopify.
 
-Links and Add to Cart won't work. Just want to be able to run Shopify liquid files locally (and eventually use livereload/figwheel).
+Links and Add to Cart won't work. Just want to be able to render Shopify liquid files locally (and eventually use livereload/figwheel).
 
 # See also
 
