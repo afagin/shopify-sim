@@ -11,14 +11,14 @@ Liquid::Template.file_system = ShopifyFileSystem.new
 
 set :public_folder, '../skeleton-theme/assets'
 
-def liquid_template(file)
+def parse_liquid_template(file)
   Liquid::Template.parse(File.read("../skeleton-theme/#{file}"))
 end
 
 get '/' do
   vars = YAML.load_file('index.yaml')
-  html = liquid_template('templates/product.liquid').render!(vars)
-  layout = liquid_template('layout/theme.liquid')
+  html = parse_liquid_template('templates/product.liquid').render!(vars)
+  layout = parse_liquid_template('layout/theme.liquid')
   layout.render! vars.merge('content_for_layout' => html)
 end
 
