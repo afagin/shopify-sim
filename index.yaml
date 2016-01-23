@@ -55,6 +55,8 @@ product:
   url: /products/helloworld
 shop:
   url: http://example.com
+  name: MyStore
+powered_by_link: <a href="http://example.com">Powered by Shopify</a>
 collections: {}
 collection: {}
 page_title: "Page title from index.yaml"
@@ -62,3 +64,6 @@ current_tags:
 current_page: 1
 page_description:
 canonical_url: http://example.com/
+cart:
+  item_count: 0
+  total_price: 0
