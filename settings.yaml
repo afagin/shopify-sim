@@ -1,0 +1,7 @@
+---
+settings:
+  base_font_size: 12px
+  background_color: white
+  text_color: black
+  link_color: blue
+  base_font_family: Arial

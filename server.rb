@@ -30,14 +30,7 @@ get '*' do
     Liquid::Template.parse(File.read(liquid_path)).render!
   elsif File.exist?(liquid_path = "../skeleton-theme/assets#{path.sub(/\.css$/, '')}.liquid")
     content_type mime_type("css")
-    Sass::Engine.new(Liquid::Template.parse(File.read(liquid_path)).render!({
-                                                                                'settings' => {'base_font_size' => '12px',
-                                                                                               'background_color' => 'white',
-                                                                                               'text_color' => 'black',
-                                                                                               'link_color' => 'blue',
-                                                                                               'base_font_family' => 'Arial'
-                                                                                }
-                                                                            }), {syntax: :scss}).render
+    Sass::Engine.new(Liquid::Template.parse(File.read(liquid_path)).render!(YAML.load_file('settings.yaml')), {syntax: :scss}).render
   else
     halt 404
   end
