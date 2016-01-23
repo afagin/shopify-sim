@@ -52,10 +52,12 @@ product:
   content: |-
     <p>If you have to be at a desk every day, make it a little more bearable with this desk calendar. You'll get a chuckle or an eye-roll daily, guaranteed.</p>
     <p><em>Order by Wednesday, 12/16 for delivery by 12/24 </em></p>
-shop: {}
+  url: /products/helloworld
+shop:
+  url: http://example.com
 collections: {}
 collection: {}
-page_title: {}
+page_title: "Page title from index.yaml"
 current_tags:
 current_page: 1
 page_description:

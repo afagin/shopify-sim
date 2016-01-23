@@ -1,5 +1,6 @@
 require 'rack/test'
 require 'rspec'
+require 'rspec-html-matchers'
 
 ENV['RACK_ENV'] = 'test'
 
@@ -10,4 +11,7 @@ module RSpecMixin
   def app() Sinatra::Application end
 end
 
-RSpec.configure { |c| c.include RSpecMixin }
+RSpec.configure do |config|
+  config.include RSpecMixin
+  config.include RSpecHtmlMatchers
+end
