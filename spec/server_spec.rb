@@ -12,4 +12,11 @@ describe 'server' do
       with_text /Copyright © \d+ MyStore\./
     end
   end
+
+  it 'gets /shopify_common.js' do
+    get '/shopify_common.js'
+    expect(last_response).to be_ok
+    expect(last_response.content_type).to eq "application/javascript;charset=utf-8"
+    expect(last_response.body).to eq File.read("./skeleton-theme/assets/shopify_common.js")
+  end
 end
