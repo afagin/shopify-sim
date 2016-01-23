@@ -1,10 +1,14 @@
 # To run server
 
-```rake```
+```
+rake
+```
 
 # To run tests
 
-```rake test```
+```
+rake test
+```
 
 # Goal
 
