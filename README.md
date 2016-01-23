@@ -1,8 +1,16 @@
-# To run server
+# To run server on skeleton-theme (git subtree in this repo)
 
 ```
 rake
 ```
+
+# To run server on your own theme
+
+```
+THEME_PATH=../my-theme rake
+```
+
+(THEME_PATH/{assets,layout,snippets,templates} should exist)
 
 # To run tests
 
