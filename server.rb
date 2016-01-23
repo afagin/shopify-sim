@@ -3,13 +3,15 @@ require 'liquid'
 require 'json'
 require 'sass'
 require './standard_filters'
+require './file_system'
 
-Liquid::Template.error_mode = :strict
-Liquid::Template.register_filter StandardFilters
-Liquid::Template.file_system = Class.new do
-  def self.read_template_file(file, _)
-    File.read "skeleton-theme/snippets/#{file}.liquid"
-  end
+set :theme_path, 'skeleton-theme'
+set :public_folder, "#{settings.theme_path}/assets"
+
+before do
+  Liquid::Template.error_mode = :strict
+  Liquid::Template.register_filter StandardFilters
+  Liquid::Template.file_system = FileSystem.new(settings.theme_path)
 end
 
 def parse_liquid_template(file)
@@ -18,22 +20,20 @@ end
 
 get '/' do
   vars = YAML.load_file('index.yaml')
-  html = parse_liquid_template('skeleton-theme/templates/product.liquid').render!(vars)
-  layout = parse_liquid_template('skeleton-theme/layout/theme.liquid')
+  html = parse_liquid_template("#{settings.theme_path}/templates/product.liquid").render!(vars)
+  layout = parse_liquid_template("#{settings.theme_path}/layout/theme.liquid")
   layout.render! vars.merge('content_for_layout' => html)
 end
 
 get '*' do
-  if File.exist?(liquid_path = "skeleton-theme/assets#{request.path}.liquid")
+  if File.exist?(liquid_path = "#{settings.theme_path}/assets#{request.path}.liquid")
     content_type mime_type(File.extname(request.path))
     template = Liquid::Template.parse(File.read(liquid_path))
-    settings = YAML.load_file('settings.yaml')
-    template.render!(settings)
-  elsif File.exist?(liquid_path = "skeleton-theme/assets#{request.path.sub(/\.css$/, '')}.liquid")
+    template.render!(YAML.load_file('settings.yaml'))
+  elsif File.exist?(liquid_path = "#{settings.theme_path}/assets#{request.path.sub(/\.css$/, '')}.liquid")
     content_type mime_type("css")
     template = Liquid::Template.parse(File.read(liquid_path))
-    settings = YAML.load_file('settings.yaml')
-    rendered = template.render!(settings)
+    rendered = template.render!(YAML.load_file('settings.yaml'))
     Sass::Engine.new(rendered, {syntax: :scss}).render
   else
     halt 404
