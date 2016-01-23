@@ -1,3 +1,9 @@
+# Goal
+
+To have a local development environment that simulates Shopify.
+
+Links and Add to Cart won't work. Just want to be able to render Shopify liquid files locally (and eventually use livereload/figwheel).
+
 # To run server on skeleton-theme (git subtree in this repo)
 
 ```
@@ -17,12 +23,6 @@ THEME_PATH=../my-theme rake
 ```
 rake test
 ```
-
-# Goal
-
-To have a local development environment that simulates Shopify.
-
-Links and Add to Cart won't work. Just want to be able to render Shopify liquid files locally (and eventually use livereload/figwheel).
 
 # See also
 
