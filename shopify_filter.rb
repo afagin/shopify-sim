@@ -4,7 +4,7 @@ module ShopifyFilter
   end
 
   def handle(string)
-    string ? string.to_handle : nil
+    string.to_s.downcase.gsub(/\W/, ' ').gsub(/\ +/, '-').gsub(/(-+)$/, '').gsub(/^(-+)/, '')
   end
 
   def link_to(link, url, title="")
@@ -26,7 +26,7 @@ module ShopifyFilter
   end
 
   def url_for_vendor(vendor_title)
-    "/collections/#{vendor_title.to_handle}"
+    "/collections/#{handle vendor_title}"
   end
 
   def money_without_currency(money)
