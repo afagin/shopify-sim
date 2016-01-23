@@ -28,4 +28,11 @@ describe 'server' do
       with_tag('path', with: {fill: 'black'})
     end
   end
+
+  it 'gets /cart.svg' do
+    get '/cart.svg'
+    expect(last_response).to be_ok
+    expect(last_response.content_type).to eq "image/svg+xml"
+    expect(last_response.body).to have_tag('svg', with: {width: '9.6px', height: '9.6px', fill: 'black'})
+  end
 end
