@@ -40,4 +40,15 @@ describe 'server' do
     get '/does-not-exist.js'
     expect(last_response).to be_not_found
   end
+
+  xit 'returns 404' do
+    get '/style.scss.liquid'
+    expect(last_response).to be_not_found
+  end
+
+  it 'gets /style.scss.css' do
+    get '/style.scss.css'
+    expect(last_response).to be_ok
+    expect(last_response.body).to match /max-width: 720px;/
+  end
 end
