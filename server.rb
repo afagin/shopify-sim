@@ -17,20 +17,10 @@ def liquid_template(file)
 end
 
 get '/' do
-  json = {
-      "product" => JSON.parse(File.read('product.json')),
-      "shop" => {},
-      "collections" => {},
-      "collection" => {},
-      "page_title" => {},
-      "current_tags" => nil,
-      "current_page" => 1,
-      "page_description" => nil,
-      "canonical_url" => "http://example.com/"
-  }
-  html = liquid_template('templates/product.liquid').render!(json)
+  vars = YAML.load_file('index.yaml')
+  html = liquid_template('templates/product.liquid').render!(vars)
   layout = liquid_template('layout/theme.liquid')
-  layout.render! json.merge('content_for_layout' => html)
+  layout.render! vars.merge('content_for_layout' => html)
 end
 
 get '*' do
