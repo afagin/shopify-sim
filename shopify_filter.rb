@@ -1,6 +1,24 @@
 module ShopifyFilter
   def img_url(product, size)
-    "http://placehold.it/600x600"
+    pixels = {
+        "pico" => "16x16",
+        "icon" => "32x32",
+        "thumb" => "50x50",
+        "small" => "100x100",
+        "compact" => "160x160",
+        "medium" => "240x240",
+        "large" => "480x480",
+        "grande" => "600x600",
+        "original" => "1024x1024",
+        "1024x1024" => "1024x1024",
+        "2048x2048" => "2048x2048",
+        "master" => "2048x2048"
+    }[size]
+    if pixels
+      "http://placehold.it/#{pixels}"
+    else
+      "http://placehold.it/300x300?text=invalid+size"
+    end
   end
 
   def handle(string)
