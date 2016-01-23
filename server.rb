@@ -15,24 +15,23 @@ end
 set :public_folder, 'skeleton-theme/assets'
 
 def parse_liquid_template(file)
-  Liquid::Template.parse(File.read("skeleton-theme/#{file}"))
+  Liquid::Template.parse(File.read(file))
 end
 
 get '/' do
   vars = YAML.load_file('index.yaml')
-  html = parse_liquid_template('templates/product.liquid').render!(vars)
-  layout = parse_liquid_template('layout/theme.liquid')
+  html = parse_liquid_template('skeleton-theme/templates/product.liquid').render!(vars)
+  layout = parse_liquid_template('skeleton-theme/layout/theme.liquid')
   layout.render! vars.merge('content_for_layout' => html)
 end
 
 get '*' do
-  path = params['splat'].first
-  if File.exist?(liquid_path = "skeleton-theme/assets#{path}.liquid")
-    content_type mime_type(File.extname(path))
+  if File.exist?(liquid_path = "skeleton-theme/assets#{request.path}.liquid")
+    content_type mime_type(File.extname(request.path))
     template = Liquid::Template.parse(File.read(liquid_path))
     settings = YAML.load_file('settings.yaml')
     template.render!(settings)
-  elsif File.exist?(liquid_path = "skeleton-theme/assets#{path.sub(/\.css$/, '')}.liquid")
+  elsif File.exist?(liquid_path = "skeleton-theme/assets#{request.path.sub(/\.css$/, '')}.liquid")
     content_type mime_type("css")
     template = Liquid::Template.parse(File.read(liquid_path))
     settings = YAML.load_file('settings.yaml')
