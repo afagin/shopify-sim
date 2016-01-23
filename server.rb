@@ -29,10 +29,15 @@ get '*' do
   path = params['splat'].first
   if File.exist?(liquid_path = "./skeleton-theme/assets#{path}.liquid")
     content_type mime_type(File.extname(path))
-    Liquid::Template.parse(File.read(liquid_path)).render!
+    template = Liquid::Template.parse(File.read(liquid_path))
+    settings = YAML.load_file('settings.yaml')
+    template.render!(settings)
   elsif File.exist?(liquid_path = "./skeleton-theme/assets#{path.sub(/\.css$/, '')}.liquid")
     content_type mime_type("css")
-    Sass::Engine.new(Liquid::Template.parse(File.read(liquid_path)).render!(YAML.load_file('settings.yaml')), {syntax: :scss}).render
+    template = Liquid::Template.parse(File.read(liquid_path))
+    settings = YAML.load_file('settings.yaml')
+    rendered = template.render!(settings)
+    Sass::Engine.new(rendered, {syntax: :scss}).render
   else
     halt 404
   end

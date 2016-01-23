@@ -24,6 +24,8 @@ describe 'server' do
     get '/arrow-down.svg'
     expect(last_response).to be_ok
     expect(last_response.content_type).to eq "image/svg+xml"
-    expect(last_response.body).to have_tag('svg', with: {width: '15px', height: '15px'})
+    expect(last_response.body).to have_tag('svg', with: {width: '15px', height: '15px'}) do
+      with_tag('path', with: {fill: 'black'})
+    end
   end
 end
