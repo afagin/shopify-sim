@@ -1,7 +1,7 @@
 require_relative './helper'
 
-describe "My Sinatra Application" do
-  it "should allow accessing the home page" do
+describe 'server' do
+  it 'gets the index' do
     get '/'
     expect(last_response).to be_ok
   end
