@@ -12,8 +12,6 @@ Liquid::Template.file_system = Class.new do
   end
 end
 
-set :public_folder, 'skeleton-theme/assets'
-
 def parse_liquid_template(file)
   Liquid::Template.parse(File.read(file))
 end
