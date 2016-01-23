@@ -79,27 +79,24 @@ describe ShopifyFilter do
     expect(date(nil, "%B")).to eq(nil)
     expect(date("now", "%Y")).to match /^\d{4}$/
   end
-  #
-  #
-  # it "tests first_last" do
-  #   expect(first([1,2,3])).to eq(1)
-  #   expect(last([1,2,3])).to eq(3)
-  #   expect(first([])).to eq(nil)
-  #   expect(last([])).to eq(nil)
-  # end
-  #
-  # it "tests replace" do
-  #   expect(replace("a a a a", 'a', 'b')).to eq('b b b b')
-  #   expect(replace_first("a a a a", 'a', 'b')).to eq('b a a a')
-  #   assert_template_result 'b a a a', "{{ 'a a a a' | replace_first: 'a', 'b' }}"
-  # end
-  #
-  # it "tests remove" do
-  #   expect(remove("a a a a", 'a')).to eq('   ')
-  #   expect(remove_first("a a a a", 'a ')).to eq('a a a')
-  #   assert_template_result 'a a a', "{{ 'a a a a' | remove_first: 'a ' }}"
-  # end
-  #
+
+  it "tests first_last" do
+    expect(first([1,2,3])).to eq(1)
+    expect(last([1,2,3])).to eq(3)
+    expect(first([])).to eq(nil)
+    expect(last([])).to eq(nil)
+  end
+
+  it "tests replace" do
+    expect(replace("a a a a", 'a', 'b')).to eq('b b b b')
+    expect(replace_first("a a a a", 'a', 'b')).to eq('b a a a')
+  end
+
+  it "tests remove" do
+    expect(remove("a a a a", 'a')).to eq('   ')
+    expect(remove_first("a a a a", 'a ')).to eq('a a a')
+  end
+
   # it "tests strip_newlines" do
   #   assert_template_result 'abc', "{{ source | strip_newlines }}", 'source' => "a\nb\nc"
   # end
@@ -119,5 +116,5 @@ describe ShopifyFilter do
   #   assert_template_result('abc',"{{ a | prepend: 'a'}}",assigns)
   #   assert_template_result('abc',"{{ a | prepend: b}}",assigns)
   # end
-
+  #
 end

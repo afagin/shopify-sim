@@ -40,7 +40,9 @@ module ShopifyFilter
   end
 
   def truncatewords(input, words = 15, truncate_string = "...")
-    if input.nil? then return end
+    if input.nil? then
+      return
+    end
     wordlist = input.to_s.split
     l = words.to_i - 1
     l = 0 if l < 0
@@ -54,7 +56,9 @@ module ShopifyFilter
   alias_method :h, :escape
 
   def truncate(input, length = 50, truncate_string = "...")
-    if input.nil? then return end
+    if input.nil? then
+      return
+    end
     l = length.to_i - truncate_string.length
     l = 0 if l < 0
     input.length > length.to_i ? input[0...l] + truncate_string : input
@@ -91,6 +95,30 @@ module ShopifyFilter
     date.strftime(format.to_s)
   rescue => e
     input
+  end
+
+  def first(array)
+    array.first if array.respond_to?(:first)
+  end
+
+  def last(array)
+    array.last if array.respond_to?(:last)
+  end
+
+  def remove(input, string)
+    input.to_s.gsub(string, '')
+  end
+
+  def remove_first(input, string)
+    input.to_s.sub(string, '')
+  end
+
+  def replace_first(input, string, replacement = '')
+    input.to_s.sub(string, replacement)
+  end
+
+  def replace(input, string, replacement = '')
+    input.to_s.gsub(string, replacement)
   end
 
   def link_to(link, url, title="")
