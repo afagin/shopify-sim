@@ -1,7 +1,7 @@
 task :default do
-  sh 'rerun bundle exec ruby server.rb'
+  exec 'rerun bundle exec ruby server.rb'
 end
 
 task :spec do
-  sh 'rspec spec'
+  exec 'rspec spec'
 end

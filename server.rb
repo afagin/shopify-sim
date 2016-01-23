@@ -5,7 +5,7 @@ require 'sass'
 require './standard_filters'
 require './file_system'
 
-set :theme_path, 'skeleton-theme'
+set :theme_path, ENV['THEME_PATH'] || 'skeleton-theme'
 set :public_folder, "#{settings.theme_path}/assets"
 
 before do
