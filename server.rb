@@ -3,11 +3,14 @@ require 'liquid'
 require 'json'
 require 'sass'
 require './standard_filters'
-require './shopify_file_system'
 
 Liquid::Template.error_mode = :strict
 Liquid::Template.register_filter StandardFilters
-Liquid::Template.file_system = ShopifyFileSystem.new
+Liquid::Template.file_system = Class.new do
+  def self.read_template_file(file, _)
+    File.read "./skeleton-theme/snippets/#{file}.liquid"
+  end
+end
 
 set :public_folder, './skeleton-theme/assets'
 
