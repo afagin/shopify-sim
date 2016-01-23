@@ -1,7 +1,13 @@
 require_relative './helper'
 
-describe ShopifyFilter do
-  include ShopifyFilter
+describe StandardFilters do
+  include StandardFilters
+
+  it "tests img_url" do
+    expect(img_url(nil, "pico")).to eq("http://placehold.it/16x16")
+    expect(img_url(nil, "compact")).to eq("http://placehold.it/160x160")
+    expect(img_url(nil, "asdf")).to eq("http://placehold.it/300x300?text=invalid+size")
+  end
 
   it "tests size" do
     expect(size([1,2,3])).to eq(3)

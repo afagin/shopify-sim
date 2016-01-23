@@ -1,6 +1,6 @@
 require 'cgi'
 
-module ShopifyFilter
+module StandardFilters
   def img_url(product, size)
     pixels = {
         "pico" => "16x16",

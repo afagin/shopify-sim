@@ -62,6 +62,7 @@ collection: {}
 page_title: "Page title from index.yaml"
 current_tags:
 current_page: 1
+template: product
 page_description:
 canonical_url: http://example.com/
 cart:

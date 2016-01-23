@@ -2,11 +2,11 @@ require 'sinatra'
 require 'liquid'
 require 'json'
 require 'sass'
-require './shopify_filter'
+require './standard_filters'
 require './shopify_file_system'
 
 Liquid::Template.error_mode = :strict
-Liquid::Template.register_filter ShopifyFilter
+Liquid::Template.register_filter StandardFilters
 Liquid::Template.file_system = ShopifyFileSystem.new
 
 set :public_folder, './skeleton-theme/assets'
