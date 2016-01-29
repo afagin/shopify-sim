@@ -1,10 +1,10 @@
-class Image
+class Image < Liquid::Drop
   def initialize(url, alt)
     @url = url
     @alt = alt
   end
 
-  def to_liquid
+  def to_s
     @url
   end
 
