@@ -102,11 +102,32 @@ settings:
   link_color: blue
   base_font_family: Arial
   use_logo: false
+  facebook_url: http://example.com/
+  twitter_url: http://example.com/
+  pinterest_url: http://example.com/
+  googleplus_url: http://example.com/
+  instagram_url: http://example.com/
+  linkedin_url: http://example.com/
+  flickr_url: http://example.com/
+  yelp_url: http://example.com/
+  vimeo_url: http://example.com/
+  youtube_url: http://example.com/
+  tumblr_url: http://example.com/
+  wordpress_url: http://example.com/
+  featured_blog: http://example.com/
+  social_icons_style: ""
+  contact_email: "me@example.com"
 linklists:
   footer:
+    links: []
+  main-menu:
     links: []
 search:
   terms:
 collections:
   urban-dictionary:
     handle:
+open-graph-tags: ""
+twitter-card: ""
+social-links: ""
+site-nav: ""

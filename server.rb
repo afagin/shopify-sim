@@ -24,7 +24,7 @@ get '/' do
   layout_template = Liquid::Template.parse(File.read("#{settings.theme_path}/layout/theme.liquid"))
   html = layout_template.render(vars.merge('content_for_layout' => html), {strict_variables: true, strict_filters: true})
 
-  if template.errors.empty? || !layout_template.errors.empty?
+  if !template.errors.empty? || !layout_template.errors.empty?
     return {template: template.errors, layout_template: layout_template.errors}.awesome_inspect(html: true)
   end
 
