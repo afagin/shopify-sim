@@ -4,6 +4,8 @@ require 'json'
 require 'sass'
 require './standard_filters'
 require './file_system'
+require './image'
+require 'awesome_print'
 
 set :theme_path, ENV['THEME_PATH'] || 'skeleton-theme'
 set :public_folder, "#{settings.theme_path}/assets"
@@ -14,15 +16,19 @@ before do
   Liquid::Template.file_system = FileSystem.new(settings.theme_path)
 end
 
-def parse_liquid_template(file)
-  Liquid::Template.parse(File.read(file))
-end
-
 get '/' do
   vars = YAML.load_file('index.yaml')
-  html = parse_liquid_template("#{settings.theme_path}/templates/product.liquid").render!(vars)
-  layout = parse_liquid_template("#{settings.theme_path}/layout/theme.liquid")
-  layout.render! vars.merge('content_for_layout' => html)
+  template = Liquid::Template.parse(File.read("#{settings.theme_path}/templates/product.liquid"))
+  html = template.render(vars, {strict_variables: true, strict_filters: true})
+
+  layout_template = Liquid::Template.parse(File.read("#{settings.theme_path}/layout/theme.liquid"))
+  html = layout_template.render(vars.merge('content_for_layout' => html), {strict_variables: true, strict_filters: true})
+
+  if template.errors.empty? || !layout_template.errors.empty?
+    return {template: template.errors, layout_template: layout_template.errors}.awesome_inspect(html: true)
+  end
+
+  html
 end
 
 get '*' do

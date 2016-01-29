@@ -1,12 +1,19 @@
+GIT
+  remote: git://github.com/urbandictionary/liquid.git
+  revision: cf612689ea39777639ff7e795509cc048a137bf0
+  branch: missing_variables_and_filters
+  specs:
+    liquid (4.0.0.rc1)
+
 GEM
   remote: https://rubygems.org/
   specs:
+    awesome_print (1.6.1)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     diff-lcs (1.2.5)
     ffi (1.9.6)
     hitimes (1.2.2)
-    liquid (3.0.1)
     listen (2.8.5)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -51,7 +58,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  liquid
+  awesome_print
+  liquid!
   rack (= 1.5.2)
   rerun
   rspec
