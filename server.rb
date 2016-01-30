@@ -25,6 +25,11 @@ def scss(source)
   Sass::Engine.new(source, syntax: :scss).render
 end
 
+def render_template(vars, path)
+  template = parse_template(theme_path(path))
+  template.render!(vars, {strict_variables: true, strict_filters: true})
+end
+
 before do
   Liquid::Template.error_mode = :strict
   Liquid::Template.register_filter StandardFilters
@@ -37,11 +42,8 @@ end
 
 get '/' do
   vars = yaml('index.yaml')
-  template = parse_template(theme_path("templates/product.liquid"))
-  html = template.render!(vars, {strict_variables: true, strict_filters: true})
-
-  layout_template = parse_template(theme_path("layout/theme.liquid"))
-  layout_template.render!(vars.merge('content_for_layout' => html), {strict_variables: true, strict_filters: true})
+  html = render_template(vars, 'templates/product.liquid')
+  render_template(vars.merge('content_for_layout' => html), 'layout/theme.liquid')
 end
 
 get '/files/*' do
@@ -49,6 +51,8 @@ get '/files/*' do
 end
 
 get '/assets/*' do
+  raise 'Invalid path' if request.path.include?('..')
+  
   if File.exist?(path = theme_path("#{request.path}.liquid"))
     content_type mime_type(File.extname(request.path))
     return parse_template(path).render!(yaml('settings.yaml'))
