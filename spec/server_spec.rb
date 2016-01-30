@@ -15,14 +15,14 @@ describe 'server' do
   end
 
   it 'gets /shopify_common.js' do
-    get '/shopify_common.js'
+    get '/assets/shopify_common.js'
     expect(last_response).to be_ok
     expect(last_response.content_type).to eq "application/javascript;charset=utf-8"
     expect(last_response.body).to eq File.read("./skeleton-theme/assets/shopify_common.js")
   end
 
   it 'gets /arrow-down.svg' do
-    get '/arrow-down.svg'
+    get '/assets/arrow-down.svg'
     expect(last_response).to be_ok
     expect(last_response.content_type).to eq "image/svg+xml"
     expect(last_response.body).to have_tag('svg', with: {width: '15px', height: '15px'}) do
@@ -31,10 +31,15 @@ describe 'server' do
   end
 
   it 'gets /cart.svg' do
-    get '/cart.svg'
+    get '/assets/cart.svg'
     expect(last_response).to be_ok
     expect(last_response.content_type).to eq "image/svg+xml"
     expect(last_response.body).to have_tag('svg', with: {width: '9.6px', height: '9.6px', fill: 'black'})
+  end
+
+  it 'returns 404' do
+    get '/assets/does-not-exist.js'
+    expect(last_response).to be_not_found
   end
 
   it 'returns 404' do
@@ -43,7 +48,7 @@ describe 'server' do
   end
 
   it 'gets /style.scss.css' do
-    get '/style.scss.css'
+    get '/assets/style.scss.css'
     expect(last_response).to be_ok
     expect(last_response.body).to match /max-width: 720px;/
   end

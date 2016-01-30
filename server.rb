@@ -8,7 +8,6 @@ require './image'
 require 'awesome_print'
 
 set :theme_path, ENV['THEME_PATH'] || 'skeleton-theme'
-set :public_folder, "#{settings.theme_path}/assets"
 
 before do
   Liquid::Template.error_mode = :strict
@@ -29,16 +28,20 @@ post '/cart/add' do
   params.awesome_inspect(html: true)
 end
 
-get '*' do
-  if File.exist?(liquid_path = "#{settings.theme_path}/assets#{request.path}.liquid")
+def parse_template(path)
+  Liquid::Template.parse(File.read(path))
+end
+
+get '/assets/*' do
+  if File.exist?(path = "#{settings.theme_path}#{request.path}.liquid")
     content_type mime_type(File.extname(request.path))
-    template = Liquid::Template.parse(File.read(liquid_path))
-    template.render!(YAML.load_file('settings.yaml'))
-  elsif File.exist?(liquid_path = "#{settings.theme_path}/assets#{request.path.sub(/\.css$/, '')}.liquid")
+    parse_template(path).render!(YAML.load_file('settings.yaml'))
+  elsif File.exist?(path = "#{settings.theme_path}#{request.path.sub(/\.css$/, '')}.liquid")
     content_type mime_type("css")
-    template = Liquid::Template.parse(File.read(liquid_path))
-    rendered = template.render!(YAML.load_file('settings.yaml'))
-    Sass::Engine.new(rendered, {syntax: :scss}).render
+    rendered = parse_template(path).render!(YAML.load_file('settings.yaml'))
+    Sass::Engine.new(rendered, syntax: :scss).render
+  elsif File.exist?(path = "#{settings.theme_path}#{request.path}")
+    send_file path
   else
     halt 404
   end

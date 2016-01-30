@@ -164,7 +164,7 @@ module StandardFilters
   end
 
   def asset_url(file)
-    "/#{file}"
+    "/assets/#{file}"
   end
 
   def global_asset_url(file)
