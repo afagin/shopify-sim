@@ -28,7 +28,7 @@ get '/files/*' do
 end
 
 get '/' do
-  vars = yaml_merge('index.yaml', 'settings.yaml')
+  vars = yaml_merge('index.yaml', 'calendar.yaml', 'settings.yaml')
   render_template_in_theme(vars, 'templates/product.liquid')
 end
 
