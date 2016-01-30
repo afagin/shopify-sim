@@ -1,5 +1,5 @@
 task :default do
-  exec 'rerun bundle exec ruby server.rb'
+  exec 'rerun "bundle exec rackup -p 4567"' 
 end
 
 task :spec do

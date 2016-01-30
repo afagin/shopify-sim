@@ -40,10 +40,10 @@ product:
     price: 1500
     weight: 380
     compare_at_price:
-    inventory_quantity: 0
+    inventory_quantity: 10
     inventory_management: shopify
     inventory_policy: deny
-    available: false
+    available: true
     sku: '9781449465667'
     requires_shipping: true
     taxable: true
