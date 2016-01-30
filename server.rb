@@ -32,6 +32,11 @@ get '/' do
   render_template_in_theme(vars, 'templates/product.liquid')
 end
 
+get '/mug' do
+  vars = yaml_merge('index.yaml', 'mug.yaml', 'settings.yaml')
+  render_template_in_theme(vars, 'templates/product.liquid')
+end
+
 get '/assets/*' do
   raise 'Invalid path' if request.path.include?('..')
 
