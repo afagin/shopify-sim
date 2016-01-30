@@ -3,5 +3,5 @@ task :default do
 end
 
 task :spec do
-  exec 'rspec spec'
+  exec 'rerun rspec spec'
 end
