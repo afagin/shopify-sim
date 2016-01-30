@@ -19,16 +19,10 @@ end
 get '/' do
   vars = YAML.load_file('index.yaml')
   template = Liquid::Template.parse(File.read("#{settings.theme_path}/templates/product.liquid"))
-  html = template.render(vars, {strict_variables: true, strict_filters: true})
+  html = template.render!(vars, {strict_variables: true, strict_filters: true})
 
   layout_template = Liquid::Template.parse(File.read("#{settings.theme_path}/layout/theme.liquid"))
-  html = layout_template.render(vars.merge('content_for_layout' => html), {strict_variables: true, strict_filters: true})
-
-  if !template.errors.empty? || !layout_template.errors.empty?
-    return {template: template.errors, layout_template: layout_template.errors}.awesome_inspect(html: true)
-  end
-
-  html
+  layout_template.render!(vars.merge('content_for_layout' => html), {strict_variables: true, strict_filters: true})
 end
 
 get '*' do

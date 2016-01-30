@@ -147,18 +147,6 @@ module StandardFilters
     sprintf("%.2f", money.to_i/100.0)
   end
 
-  def asset_url(file)
-    "/#{file}"
-  end
-
-  def global_asset_url(file)
-    "//cdn.shopify.com/s/global/#{file}"
-  end
-
-  def shopify_asset_url(file)
-    "//cdn.shopify.com/s/shopify/#{file}"
-  end
-
   def pluralize(input, singular, plural)
     input == 1 ? singular : plural
   end
@@ -173,6 +161,22 @@ module StandardFilters
 
   def img_tag(input, alt = nil)
     "<img src='#{input}' alt='#{alt}' />"
+  end
+
+  def asset_url(file)
+    "/#{file}"
+  end
+
+  def global_asset_url(file)
+    "//cdn.shopify.com/s/global/#{file}"
+  end
+
+  def shopify_asset_url(file)
+    "//cdn.shopify.com/s/shopify/#{file}"
+  end
+
+  def file_url(file)
+    file
   end
 
   def payment_type_img_url(payment_type)
