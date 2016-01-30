@@ -23,13 +23,13 @@ post '/cart/add' do
   params.awesome_inspect(html: true)
 end
 
+get '/files/*' do
+  redirect 'http://lorempixel.com/800/150'
+end
+
 get '/' do
   vars = yaml_merge('index.yaml', 'settings.yaml')
   render_template_in_theme(vars, 'templates/product.liquid')
-end
-
-get '/files/*' do
-  redirect 'http://lorempixel.com/800/150'
 end
 
 get '/assets/*' do
