@@ -36,6 +36,12 @@ def render_template_in_theme(vars, path)
   render_template(vars.merge('content_for_layout' => html), 'layout/theme.liquid')
 end
 
+def yaml_merge(*paths)
+  out = {}
+  paths.each { |path| out.deep_merge!(yaml(path)) }
+  out
+end
+
 before do
   Liquid::Template.error_mode = :strict
   Liquid::Template.register_filter StandardFilters
@@ -47,7 +53,7 @@ post '/cart/add' do
 end
 
 get '/' do
-  vars = yaml('index.yaml').deep_merge(yaml('settings.yaml'))
+  vars = yaml_merge('index.yaml', 'settings.yaml')
   render_template_in_theme(vars, 'templates/product.liquid')
 end
 
@@ -57,7 +63,7 @@ end
 
 get '/assets/*' do
   raise 'Invalid path' if request.path.include?('..')
-  
+
   if File.exist?(path = theme_path("#{request.path}.liquid"))
     content_type mime_type(File.extname(request.path))
     return parse_template(path).render!(yaml('settings.yaml'))
