@@ -6,6 +6,7 @@ require './standard_filters'
 require './file_system'
 require './image'
 require 'awesome_print'
+require 'active_support'
 
 set :theme_path, ENV['THEME_PATH'] || 'skeleton-theme'
 
@@ -41,7 +42,7 @@ post '/cart/add' do
 end
 
 get '/' do
-  vars = yaml('index.yaml')
+  vars = yaml('index.yaml').deep_merge(yaml('settings.yaml'))
   html = render_template(vars, 'templates/product.liquid')
   render_template(vars.merge('content_for_layout' => html), 'layout/theme.liquid')
 end
