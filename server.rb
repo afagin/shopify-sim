@@ -20,7 +20,8 @@ before do
 end
 
 post '/cart/add' do
-  params.awesome_inspect(html: true)
+  content_type 'text'
+  params.inspect
 end
 
 get '/files/*' do
@@ -46,7 +47,7 @@ get '/assets/*' do
   end
 
   if File.exist?(path = theme_path("#{request.path.sub(/\.css$/, '')}.liquid"))
-    content_type mime_type("css")
+    content_type mime_type('css')
     return scss(parse_template(path).render!(yaml('settings.yaml')))
   end
 
