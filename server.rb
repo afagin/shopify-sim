@@ -31,6 +31,11 @@ def render_template(vars, path)
   template.render!(vars, {strict_variables: true, strict_filters: true})
 end
 
+def render_template_in_theme(vars, path)
+  html = render_template(vars, path)
+  render_template(vars.merge('content_for_layout' => html), 'layout/theme.liquid')
+end
+
 before do
   Liquid::Template.error_mode = :strict
   Liquid::Template.register_filter StandardFilters
@@ -43,8 +48,7 @@ end
 
 get '/' do
   vars = yaml('index.yaml').deep_merge(yaml('settings.yaml'))
-  html = render_template(vars, 'templates/product.liquid')
-  render_template(vars.merge('content_for_layout' => html), 'layout/theme.liquid')
+  render_template_in_theme(vars, 'templates/product.liquid')
 end
 
 get '/files/*' do
