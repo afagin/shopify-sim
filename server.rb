@@ -37,10 +37,10 @@ end
 
 get '/' do
   vars = yaml('index.yaml')
-  template = Liquid::Template.parse(File.read("#{settings.theme_path}/templates/product.liquid"))
+  template = parse_template("#{settings.theme_path}/templates/product.liquid")
   html = template.render!(vars, {strict_variables: true, strict_filters: true})
 
-  layout_template = Liquid::Template.parse(File.read("#{settings.theme_path}/layout/theme.liquid"))
+  layout_template = parse_template("#{settings.theme_path}/layout/theme.liquid")
   layout_template.render!(vars.merge('content_for_layout' => html), {strict_variables: true, strict_filters: true})
 end
 
