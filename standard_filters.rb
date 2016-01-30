@@ -176,7 +176,7 @@ module StandardFilters
   end
 
   def file_url(file)
-    file
+    "/files/#{file}"
   end
 
   def payment_type_img_url(payment_type)

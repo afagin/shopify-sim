@@ -27,7 +27,7 @@ product:
       background:
       via:
     page:
-      subtitle:
+      subtitle: Product subtitle
   variants:
   - &first_variant
     id: 7397680133

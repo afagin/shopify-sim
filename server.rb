@@ -44,6 +44,10 @@ get '/' do
   layout_template.render!(vars.merge('content_for_layout' => html), {strict_variables: true, strict_filters: true})
 end
 
+get '/files/*' do
+  redirect 'http://lorempixel.com/800/150'
+end
+
 get '/assets/*' do
   if File.exist?(path = theme_path("#{request.path}.liquid"))
     content_type mime_type(File.extname(request.path))
