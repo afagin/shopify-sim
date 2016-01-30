@@ -25,6 +25,10 @@ get '/' do
   layout_template.render!(vars.merge('content_for_layout' => html), {strict_variables: true, strict_filters: true})
 end
 
+post '/cart/add' do
+  params.awesome_inspect(html: true)
+end
+
 get '*' do
   if File.exist?(liquid_path = "#{settings.theme_path}/assets#{request.path}.liquid")
     content_type mime_type(File.extname(request.path))
