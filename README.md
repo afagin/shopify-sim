@@ -18,6 +18,12 @@ THEME_PATH=../my-theme rake
 
 (THEME_PATH/{assets,layout,snippets,templates} should exist)
 
+# Serve static assets at /public
+
+```
+PUBLIC_DIR=../my-theme/tmp/ rake
+```
+
 # To run tests
 
 ```
