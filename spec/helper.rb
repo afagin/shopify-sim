@@ -4,7 +4,7 @@ require 'rspec-html-matchers'
 
 ENV['RACK_ENV'] = 'test'
 
-require_relative '../server'
+require_relative '../lib/server'
 
 module RSpecMixin
   include Rack::Test::Methods

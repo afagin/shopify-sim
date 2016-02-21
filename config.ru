@@ -1,4 +1,4 @@
-require './server'
+require './lib/server'
 
 if ENV['PUBLIC_DIR']
   map '/public' do
