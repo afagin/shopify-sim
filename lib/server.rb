@@ -29,12 +29,12 @@ get '/files/*' do
 end
 
 get '/' do
-  vars = yaml_merge('index.yaml', 'calendar.yaml', 'settings.yaml')
+  vars = yaml_merge('yaml/index.yaml', 'yaml/calendar.yaml', 'yaml/settings.yaml')
   render_template_in_theme(vars, 'templates/product.liquid')
 end
 
 get '/mug' do
-  vars = yaml_merge('index.yaml', 'mug.yaml', 'settings.yaml')
+  vars = yaml_merge('yaml/index.yaml', 'yaml/mug.yaml', 'yaml/settings.yaml')
   render_template_in_theme(vars, 'templates/product.liquid')
 end
 
@@ -43,12 +43,12 @@ get '/assets/*' do
 
   if File.exist?(path = theme_path("#{request.path}.liquid"))
     content_type mime_type(File.extname(request.path))
-    return parse_template(path).render!(yaml('settings.yaml'))
+    return parse_template(path).render!(yaml('yaml/settings.yaml'))
   end
 
   if File.exist?(path = theme_path("#{request.path.sub(/\.css$/, '')}.liquid"))
     content_type mime_type('css')
-    return scss(parse_template(path).render!(yaml('settings.yaml')))
+    return scss(parse_template(path).render!(yaml('yaml/settings.yaml')))
   end
 
   if File.exist?(path = theme_path(request.path))
