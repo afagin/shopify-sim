@@ -1,0 +1,83 @@
+---
+collections:
+  frontpage:
+    products:
+      - &product1
+        id: 2540787461
+        title: 2016 Desk Calendar by Urban Dictionary
+        handle: urban-dictionary-2016-desk-calendar
+        description: |-
+          <p>If you have to be at a desk every day, make it a little more bearable with this desk calendar. You'll get a chuckle or an eye-roll daily, guaranteed.</p>
+          <p><em>Order by Wednesday, 12/16 for delivery by 12/24 </em></p>
+        published_at: '2015-10-22T12:15:00-07:00'
+        created_at: '2015-10-22T12:09:48-07:00'
+        vendor: Urban Dictionary
+        type: ''
+        tags: []
+        price: 1500
+        price_min: 1500
+        price_max: 1500
+        available: false
+        price_varies: false
+        compare_at_price:
+        compare_at_price_min: 0
+        compare_at_price_max: 0
+        compare_at_price_varies: false
+        metafields:
+          spr:
+            reviews:
+          masthead:
+            background:
+            via:
+          page:
+            subtitle: Product subtitle
+        variants:
+        - &first_variant
+          id: 7397680133
+          title: Default Title
+          options:
+          - Default Title
+          option1: Default Title
+          option2:
+          option3:
+          price: 1500
+          weight: 380
+          compare_at_price:
+          inventory_quantity: 10
+          inventory_management: shopify
+          inventory_policy: deny
+          available: true
+          sku: '9781449465667'
+          requires_shipping: true
+          taxable: true
+          barcode: ''
+          featured_image:
+        selected_or_first_available_variant: *first_variant
+        images:
+        - !ruby/object:Image
+          src: "//cdn.shopify.com/s/files/1/0706/7445/products/urban2016boxmech-cover.png?v=1450068627"
+          alt: urban2016boxmech-cover
+        - !ruby/object:Image
+          src: "//cdn.shopify.com/s/files/1/0706/7445/products/page-20.png?v=1450068627"
+          alt: page-20
+        - !ruby/object:Image
+          src: "//cdn.shopify.com/s/files/1/0706/7445/products/page-58.png?v=1450068627"
+          alt: page-58
+        - !ruby/object:Image
+          src: "//cdn.shopify.com/s/files/1/0706/7445/products/page-55.png?v=1450068627"
+          alt: page-55
+        - !ruby/object:Image
+          src: "//cdn.shopify.com/s/files/1/0706/7445/products/page-44.png?v=1450068627"
+          alt: page-44
+        featured_image: !ruby/object:Image
+          src: "//cdn.shopify.com/s/files/1/0706/7445/products/urban2016boxmech-cover.png?v=1450068627"
+          alt: urban2016boxmech-cover
+        options:
+        - Title
+        content: |-
+          <p>If you have to be at a desk every day, make it a little more bearable with this desk calendar. You'll get a chuckle or an eye-roll daily, guaranteed.</p>
+          <p><em>Order by Wednesday, 12/16 for delivery by 12/24 </em></p>
+        url: /products/helloworld
+      - *product1
+      - *product1
+      - *product1

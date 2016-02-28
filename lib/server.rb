@@ -29,12 +29,12 @@ get '/files/*' do
 end
 
 get '/' do
-  vars = yaml_merge('yaml/index.yaml', 'yaml/calendar.yaml', 'yaml/settings.yaml')
+  vars = yaml_merge('yaml/index.yaml', 'yaml/calendar.yaml', 'yaml/settings.yaml', 'yaml/collections.yaml')
   render_template_in_theme(vars, 'templates/product.liquid')
 end
 
 get '/mug' do
-  vars = yaml_merge('yaml/index.yaml', 'yaml/mug.yaml', 'yaml/settings.yaml')
+  vars = yaml_merge('yaml/index.yaml', 'yaml/mug.yaml', 'yaml/settings.yaml', 'yaml/collections.yaml')
   render_template_in_theme(vars, 'templates/product.liquid')
 end
 

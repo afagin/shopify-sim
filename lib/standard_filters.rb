@@ -35,6 +35,10 @@ module StandardFilters
     input.to_s.upcase
   end
 
+  def within(input, _)
+    input
+  end
+
   def escape(input)
     CGI.escapeHTML(input) rescue input
   end

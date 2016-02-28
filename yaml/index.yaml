@@ -31,11 +31,6 @@ linklists:
     links: []
 search:
   terms:
-collections:
-  frontpage:
-    products: []
-  urban-dictionary:
-    handle:
 open-graph-tags: ""
 twitter-card: ""
 social-links: ""
@@ -48,3 +43,5 @@ snowplow: ""
 ud-header: ""
 logo-svg: ""
 footer-scripts: ""
+product-grid-item: ""
+on_sale: ""
