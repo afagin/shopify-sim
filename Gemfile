@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rack', '1.5.2'
 gem 'sinatra'
-gem 'liquid', github: 'urbandictionary/liquid', branch: 'missing_variables_and_filters'
+gem 'liquid', github: 'Shopify/liquid'
 gem 'rerun'
 gem 'sass'
 gem 'rspec'

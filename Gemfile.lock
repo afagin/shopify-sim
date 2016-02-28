@@ -1,7 +1,6 @@
 GIT
-  remote: git://github.com/urbandictionary/liquid.git
-  revision: cf612689ea39777639ff7e795509cc048a137bf0
-  branch: missing_variables_and_filters
+  remote: git://github.com/Shopify/liquid.git
+  revision: 18d1644980359c1b9afb0f2b77801e6b7c17cb36
   specs:
     liquid (4.0.0.rc1)
 
