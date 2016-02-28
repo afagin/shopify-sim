@@ -45,3 +45,16 @@ logo-svg: ""
 footer-scripts: ""
 product-grid-item: ""
 on_sale: ""
+page_title: "Page title from index.yaml"
+product:
+  title: ""
+  images: []
+  price: 0
+  description: ""
+  featured_image:
+    src: ""
+  price_varies: false
+  vendor: ""
+  handle: ""
+  url: ""
+  id: ""

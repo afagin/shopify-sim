@@ -19,6 +19,11 @@ before do
   Liquid::Template.file_system = FileSystem.new(settings.theme_path)
 end
 
+get '/' do
+  vars = yaml_merge('yaml/index.yaml', 'yaml/settings.yaml', 'yaml/collections.yaml')
+  render_template_in_theme(vars, 'templates/index.liquid')
+end
+
 get '/calendar' do
   vars = yaml_merge('yaml/index.yaml', 'yaml/calendar.yaml', 'yaml/settings.yaml', 'yaml/collections.yaml')
   render_template_in_theme(vars, 'templates/product.liquid')
