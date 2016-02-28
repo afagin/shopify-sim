@@ -19,16 +19,7 @@ before do
   Liquid::Template.file_system = FileSystem.new(settings.theme_path)
 end
 
-post '/cart/add' do
-  content_type 'text'
-  params.inspect
-end
-
-get '/files/*' do
-  redirect 'http://lorempixel.com/800/150'
-end
-
-get '/' do
+get '/calendar' do
   vars = yaml_merge('yaml/index.yaml', 'yaml/calendar.yaml', 'yaml/settings.yaml', 'yaml/collections.yaml')
   render_template_in_theme(vars, 'templates/product.liquid')
 end
@@ -36,6 +27,15 @@ end
 get '/mug' do
   vars = yaml_merge('yaml/index.yaml', 'yaml/mug.yaml', 'yaml/settings.yaml', 'yaml/collections.yaml')
   render_template_in_theme(vars, 'templates/product.liquid')
+end
+
+post '/cart/add' do
+  content_type 'text'
+  params.inspect
+end
+
+get '/files/*' do
+  redirect 'http://lorempixel.com/800/150'
 end
 
 get '/assets/*' do
