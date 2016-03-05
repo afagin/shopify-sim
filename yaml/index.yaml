@@ -18,8 +18,18 @@ canonical_url: http://example.com/
 theme:
   id: 8826604
 cart:
-  item_count: 0
-  total_price: 0
+  item_count: 1
+  total_price: 1000
+  items:
+  - properties:
+      preview_image: ""
+      title: "Cart item title"
+    product:
+      title: "Cart product title"
+      variants: []
+      handle: "cart-product-title"
+    quantity: 1
+    line_price: 1000
 current_tags: []
 page_description: ""
 content_for_header: ""

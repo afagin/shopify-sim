@@ -34,9 +34,16 @@ get '/mug' do
   render_template_in_theme(vars, 'templates/product.liquid')
 end
 
-post '/cart/add' do
-  content_type 'text'
-  params.inspect
+get '/cart' do
+  vars = yaml_merge('yaml/index.yaml', 'yaml/settings.yaml')
+  render_template_in_theme(vars, 'templates/cart.liquid')
+end
+
+['/cart/add', '/cart'].each do |path|
+  post path do
+    content_type 'text'
+    params.inspect
+  end
 end
 
 get '/files/*' do
