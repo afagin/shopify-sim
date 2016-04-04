@@ -41,11 +41,11 @@ linklists:
     links: []
 search:
   terms:
-svgicons/menu: ""
-svgicons/x: ""
-svgicons/facebook: ""
-svgicons/twitter: ""
-svgicons/logo: ""
+svgicon_menu: ""
+svgicon_x: ""
+svgicon_facebook: ""
+svgicon_twitter: ""
+svgicon_logo: ""
 open-graph-tags: ""
 twitter-card: ""
 social-links: ""
