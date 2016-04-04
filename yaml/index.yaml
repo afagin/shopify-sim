@@ -41,6 +41,10 @@ linklists:
     links: []
 search:
   terms:
+svgicons/menu: ""
+svgicons/x: ""
+svgicons/facebook: ""
+svgicons/twitter: ""
 open-graph-tags: ""
 twitter-card: ""
 social-links: ""
