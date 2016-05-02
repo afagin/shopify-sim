@@ -23,9 +23,6 @@ product:
   metafields:
     spr:
       reviews:
-    masthead:
-      background:
-      via:
     page:
       subtitle: Product subtitle
   variants:

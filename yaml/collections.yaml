@@ -26,10 +26,6 @@ collections:
         metafields:
           spr:
             reviews:
-          masthead:
-            image:
-            background:
-            via:
           page:
             subtitle: Product subtitle
         variants:
