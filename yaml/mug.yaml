@@ -4,7 +4,6 @@ product:
   title: The Urban Dictionary Mug
   handle: mug
   description: ""
-  shipping_details: Allow 5-7 business days for printing.
   published_at: '2015-10-22T12:15:00-07:00'
   created_at: '2015-10-22T12:09:48-07:00'
   vendor: Urban Dictionary
@@ -24,6 +23,8 @@ product:
       reviews:
     page:
       subtitle: Product subtitle
+    shipping:
+      details: Allow 5-7 business days for printing.
   variants:
   - &first_variant
     id: 7397680133
