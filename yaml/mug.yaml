@@ -23,8 +23,6 @@ product:
       reviews:
     page:
       subtitle: Product subtitle
-    shipping:
-      details: Allow 5-7 business days for printing.
   variants:
   - &first_variant
     id: 7397680133

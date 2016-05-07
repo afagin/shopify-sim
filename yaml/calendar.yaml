@@ -24,8 +24,6 @@ product:
       reviews:
     page:
       subtitle: Product subtitle
-    shipping:
-      details: Order by Wednesday, 12/16 for delivery by 12/24.
   variants:
   - &first_variant
     id: 7397680133
