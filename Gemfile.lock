@@ -30,6 +30,8 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     rack (1.5.2)
+    rack-livereload (0.3.16)
+      rack
     rack-protection (1.5.3)
       rack
     rb-fsevent (0.9.4)
@@ -73,6 +75,7 @@ DEPENDENCIES
   awesome_print
   liquid!
   rack (= 1.5.2)
+  rack-livereload
   rerun
   rspec
   rspec-html-matchers
